@@ -16,6 +16,7 @@ if(keyboard_check(ord("S"))) camera_set_view_pos(cam, cam_x, min(ROOM_H - cam_h,
 if(keyboard_check(ord("A"))) camera_set_view_pos(cam, max(0 - ROOM_W, cam_x - 16), cam_y)
 if(keyboard_check(ord("D"))) camera_set_view_pos(cam, min(ROOM_W - cam_w, cam_x + 16), cam_y)
 
+/*
 //zoom functionality. if scroll down zoom out
 //if scroll up zoom in
 if(mouse_wheel_down())
@@ -33,7 +34,7 @@ if(mouse_wheel_down())
 	camera_set_view_size(view_camera[0], cam_size_w, cam_size_h)
 	//oUtil.z = (cam_size / 256)
 }
-
+*/
 
 /*
 if(oGame.state == GAME_STATE.PAUSED or oGame.state = GAME_STATE.GAME_OVER){
