@@ -6,14 +6,12 @@ cam_x = camera_get_view_x(cam)
 cam_y = camera_get_view_y(cam)
 cam_h = camera_get_view_height(view_camera[0])
 cam_w = camera_get_view_width(view_camera[0])
-draw_text(50, 50, cam_h)
-draw_text(50, 75, cam_w)
 if(cam_x + cam_w > ROOM_W) camera_set_view_pos(cam, ROOM_W - cam_w, cam_y)
 if(cam_y + cam_h > ROOM_H) camera_set_view_pos(cam, cam_x, ROOM_H - cam_h)
 
-if(keyboard_check(ord("W"))) camera_set_view_pos(cam, cam_x, max(0 - ROOM_H / 2, cam_y - 16))
+if(keyboard_check(ord("W"))) camera_set_view_pos(cam, cam_x, max(0 - ROOM_H / 3, cam_y - 16))
 if(keyboard_check(ord("S"))) camera_set_view_pos(cam, cam_x, min(ROOM_H - cam_h, cam_y + 16))
-if(keyboard_check(ord("A"))) camera_set_view_pos(cam, max(0 - ROOM_W, cam_x - 16), cam_y)
+if(keyboard_check(ord("A"))) camera_set_view_pos(cam, max(0 - ROOM_W / 2, cam_x - 16), cam_y)
 if(keyboard_check(ord("D"))) camera_set_view_pos(cam, min(ROOM_W - cam_w, cam_x + 16), cam_y)
 
 /*
