@@ -2,6 +2,7 @@
 // You can write your code in this editor
 map_grid = ds_grid_create(MAP_W, MAP_H)
 ds_grid_clear(map_grid, noone)
+
 randomize()
 tmp_x = irandom(MAP_W)
 tmp_y = irandom(MAP_H)
