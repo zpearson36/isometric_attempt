@@ -13,6 +13,7 @@ for(var tX = 0; tX < MAP_W; tX++)
 		tileZ = tileData[TILE.Z]
 		
 		
+		draw_text(-250, 50, string(ScreenToTileX(mouse_x, mouse_y)) + ", " + string(ScreenToTileY(mouse_x, mouse_y)))
 		if(tileIndex != 0)
 		{
 			if((ScreenToTileX(mouse_x, mouse_y) == tX) && (ScreenToTileY(mouse_x, mouse_y) == tY))
