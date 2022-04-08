@@ -13,7 +13,7 @@ if(current_ap > 0)
 		                ScreenToTileX(x, y),
 						ScreenToTileY(x, y),
 						spd,
-						3 - current_ap
+						1
 						)
 }
 if(highlight) y -= TILE_H / 2

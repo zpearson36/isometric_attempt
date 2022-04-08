@@ -13,10 +13,12 @@ if(selected)
 			tileData = movement_grid[# tX, tY]
 			screenX = TileToScreenX(tX, tY)
 			screenY = TileToScreenY(tX, tY)
+			var offset = 1
+			if(current_ap == 1 ) offset = 0
 
 			if(tileData != 0)
 			{
-				draw_sprite_ext(sIsoMovement, tileData - 1, screenX, screenY, 1, 1, 0, c_white, .5)
+				draw_sprite_ext(sIsoMovement, tileData - offset, screenX, screenY, 1, 1, 0, c_white, .5)
 			}
 		}
 	}

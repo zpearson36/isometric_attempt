@@ -1,10 +1,26 @@
 /// @description Insert description here
 // You can write your code in this editor
-if((ScreenToTileX(mouse_x, mouse_y) == ScreenToTileX(x, y)) && (ScreenToTileY(mouse_x, mouse_y) == ScreenToTileY(x, y)))
+switch oGame.state
 {
-	highlight = true
-}
-else
-{
-	highlight = false
+	case GAMESTATES.BEGINTURN:
+	{
+		current_ap = max_action_points
+		break;
+	}
+	case GAMESTATES.MAINTURN:
+	{
+		if((ScreenToTileX(mouse_x, mouse_y) == ScreenToTileX(x, y)) && (ScreenToTileY(mouse_x, mouse_y) == ScreenToTileY(x, y)))
+		{
+			highlight = true
+		}
+		else
+		{
+			highlight = false
+		}
+		break;
+	}
+	case GAMESTATES.ENDTURN:
+	{
+		break;
+	}
 }
