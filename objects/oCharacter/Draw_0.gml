@@ -13,9 +13,7 @@ if(selected)
 			tileData = movement_grid[# tX, tY]
 			screenX = TileToScreenX(tX, tY)
 			screenY = TileToScreenY(tX, tY)
-			
-		
-			draw_text(-250, 50, string(ScreenToTileX(mouse_x, mouse_y)) + ", " + string(ScreenToTileY(mouse_x, mouse_y)))
+
 			if(tileData != 0)
 			{
 				draw_sprite_ext(sIsoMovement, tileData - 1, screenX, screenY, 1, 1, 0, c_white, .5)
