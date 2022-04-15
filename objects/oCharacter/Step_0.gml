@@ -9,6 +9,17 @@ switch oGame.state
 	}
 	case GAMESTATES.MAINTURN:
 	{
+		switch(state)
+		{
+			case CHARSTATES.IDLE:
+			{
+				break;
+			}
+			case CHARSTATES.ATTACKING:
+			{
+				break;
+			}
+		}
 		if((ScreenToTileX(mouse_x, mouse_y) == ScreenToTileX(x, y)) && (ScreenToTileY(mouse_x, mouse_y) == ScreenToTileY(x, y)))
 		{
 			highlight = true

@@ -1,5 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
+
+num_buttons = array_length(button_array)
 if(device_mouse_x_to_gui(0) > draw_x and device_mouse_x_to_gui(0) < draw_x + width
 	and device_mouse_y_to_gui(0) > draw_y and device_mouse_y_to_gui(0) <= draw_y + (num_buttons * (60)) + 10)
 {

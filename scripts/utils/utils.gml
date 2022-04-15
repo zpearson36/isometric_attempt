@@ -16,3 +16,8 @@ function in_array(array, obj)
 	
 	return index
 }
+
+function move_to_attack()
+{
+	oGame.selected.state = CHARSTATES.ATTACKING
+}

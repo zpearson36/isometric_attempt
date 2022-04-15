@@ -3,7 +3,7 @@
 txt = "<<<Missing Text>>>"
 function tmp(){show_debug_message("NOFUCKINGACTIONSETBITCHASS!!!!!!")}
 action = tmp
-width  = 50
+width  = 200
 height = 50
 c_color_idle        = c_black
 c_color_hover       = c_gray
