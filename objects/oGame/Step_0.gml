@@ -9,7 +9,7 @@ switch state
 	}
 	case GAMESTATES.MAINTURN:
 	{
-		if(mouse_check_button_pressed(mb_left))
+		if(mouse_check_button_pressed(mb_left) and not in_action_menu)
 		{
 			if(selected != undefined
 			   and map_grid[# ScreenToTileX(mouse_x, mouse_y), ScreenToTileY(mouse_x, mouse_y)] == noone

@@ -9,3 +9,4 @@ spd = 3
 selected = false
 movement_grid = ds_grid_create(MAP_W, MAP_H)
 ds_grid_clear(movement_grid, 0)
+menu = instance_create_layer(x, y, layer, oActionMenu)

@@ -29,3 +29,4 @@ enum GAMESTATES
 }
 
 state = GAMESTATES.BEGINTURN
+in_action_menu = false

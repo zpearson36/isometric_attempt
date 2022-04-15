@@ -21,3 +21,4 @@ switch state
 		break;
 	}
 }
+in_action_menu = false
