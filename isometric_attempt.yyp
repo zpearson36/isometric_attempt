@@ -8,6 +8,7 @@
     {"id":{"name":"sTmpBckGrnd","path":"sprites/sTmpBckGrnd/sTmpBckGrnd.yy",},"order":5,},
     {"id":{"name":"oCameraController","path":"objects/oCameraController/oCameraController.yy",},"order":1,},
     {"id":{"name":"sIsoTerrain","path":"sprites/sIsoTerrain/sIsoTerrain.yy",},"order":4,},
+    {"id":{"name":"utils","path":"scripts/utils/utils.yy",},"order":3,},
     {"id":{"name":"sIsoSelect","path":"sprites/sIsoSelect/sIsoSelect.yy",},"order":2,},
     {"id":{"name":"oCharacter","path":"objects/oCharacter/oCharacter.yy",},"order":2,},
     {"id":{"name":"oRender","path":"objects/oRender/oRender.yy",},"order":0,},
