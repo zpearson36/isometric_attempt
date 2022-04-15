@@ -9,9 +9,9 @@ switch state
 	case GAMESTATES.MAINTURN:
 	{
 		var total_action_points = 0
-		for(var i = 0; i < array_length(team_one); i++)
+		for(var i = 0; i < array_length(team_array[current_team]); i++)
 		{
-			total_action_points += team_one[i].current_ap
+			total_action_points += team_array[current_team][i].current_ap
 		}
 		if(total_action_points == 0) state = GAMESTATES.ENDTURN
 		break;
