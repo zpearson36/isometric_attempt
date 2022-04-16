@@ -11,7 +11,8 @@ switch state
 		var total_action_points = 0
 		for(var i = 0; i < array_length(team_array[current_team]); i++)
 		{
-			total_action_points += team_array[current_team][i].current_ap
+			var tmp_char = team_array[current_team][i]
+			total_action_points += tmp_char.current_ap
 		}
 		if(total_action_points == 0) state = GAMESTATES.ENDTURN
 		break;

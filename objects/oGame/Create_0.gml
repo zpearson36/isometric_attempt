@@ -6,7 +6,6 @@ ds_grid_clear(map_grid, noone)
 randomize()
 tmp_x = irandom(MAP_W - 1)
 tmp_y = irandom(MAP_H - 1)
-
 var tmp_char = instance_create_layer(
                                     TileToScreenX(tmp_x, tmp_y),
 									TileToScreenY(tmp_x, tmp_y),
@@ -20,7 +19,6 @@ map_grid[# tmp_x, tmp_y] = tmp_char
 
 tmp_x = irandom(MAP_W - 1)
 tmp_y = irandom(MAP_H - 1)
-
 var tmp_char = instance_create_layer(
                                     TileToScreenX(tmp_x, tmp_y),
 									TileToScreenY(tmp_x, tmp_y),
@@ -32,7 +30,6 @@ map_grid[# tmp_x, tmp_y] = tmp_char
 
 tmp_x = irandom(MAP_W - 1)
 tmp_y = irandom(MAP_H - 1)
-
 var tmp_char = instance_create_layer(
                                     TileToScreenX(tmp_x, tmp_y),
 									TileToScreenY(tmp_x, tmp_y),

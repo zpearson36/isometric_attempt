@@ -9,6 +9,7 @@ function in_array(array, obj)
 {
 	//returns index of object if found in array, else returns -1
 	var index = -1
+	
 	for(var i = 0; i < array_length(array); i++)
 	{
 		if(array[i] == obj) index = i

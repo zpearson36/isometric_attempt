@@ -4,6 +4,7 @@ if(selected and current_ap <= 0)
 {
 	oGame.selected = undefined
 	selected = false
+	state = CHARSTATES.IDLE
 }
 switch(state)
 {

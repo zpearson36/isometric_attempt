@@ -35,7 +35,6 @@ for(var tX = 0; tX < MAP_W; tX++)
 			{
 				attack_grid[# tX, tY] = 2
 			}
-			
 		}
 	}
 }

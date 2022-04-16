@@ -17,6 +17,15 @@ switch oGame.state
 			}
 			case CHARSTATES.ATTACKING:
 			{
+				if(mouse_check_button_pressed(mb_left))
+				{
+					if(attack_grid[# ScreenToTileX(mouse_x, mouse_y), ScreenToTileY(mouse_x, mouse_y)] == 2)
+					{
+						var tmp_char = oGame.map_grid[# ScreenToTileX(mouse_x, mouse_y), ScreenToTileY(mouse_x, mouse_y)]
+						tmp_char._health -= weapon.damage
+						current_ap = 0
+					}
+				}
 				break;
 			}
 		}

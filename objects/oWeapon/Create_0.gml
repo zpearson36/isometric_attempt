@@ -2,3 +2,4 @@
 // You can write your code in this editor
 name = "unarmed"
 range = 10
+damage = 1
