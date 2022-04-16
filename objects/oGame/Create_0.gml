@@ -6,10 +6,10 @@ ds_grid_clear(map_grid, noone)
 
 //randomize()
 team_one = []
-repeat(1)
+repeat(3)
 {
 	tmp_x = irandom(MAP_W - 1)
-	tmp_y = irandom(MAP_H - 1)
+	tmp_y = irandom(MAP_H / 5)
 	var tmp_char = instance_create_layer(
 	                                    TileToScreenX(tmp_x, tmp_y),
 										TileToScreenY(tmp_x, tmp_y),
@@ -21,10 +21,10 @@ repeat(1)
 }
 
 team_two = []
-repeat(1)
+repeat(3)
 {
 	tmp_x = irandom(MAP_W - 1)
-	tmp_y = irandom(MAP_H - 1)
+	tmp_y = irandom_range(MAP_H - (MAP_H /5) ,MAP_H - 1)
 	while(map_grid[# tmp_x, tmp_y] != noone)
 	{
 		//show_debug_message("POOOOOOOOP")
@@ -49,10 +49,10 @@ current_team = 0
 num_teams = array_length(team_array)
 
 cover_array = []
-repeat(10)
+repeat(15)
 {
 	tmp_x = irandom(MAP_W - 1)
-	tmp_y = irandom(MAP_H - 1)
+	tmp_y = irandom_range((MAP_H / 4) + 1, MAP_H - (MAP_H / 4))
 	while(map_grid[# tmp_x, tmp_y] != noone)
 	{
 		tmp_x = irandom(MAP_W - 1)
