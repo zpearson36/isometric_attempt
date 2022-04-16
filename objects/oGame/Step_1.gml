@@ -1,6 +1,16 @@
 /// @description Insert description here
 // You can write your code in this editor
 ds_grid_clear(map_grid, noone)
+for (var i = 0; i < instance_number(oLowCover); ++i;)
+{
+	var tmp_cov = instance_find(oLowCover,i);
+	map_grid[# ScreenToTileX(tmp_cov.x, tmp_cov.y), ScreenToTileY(tmp_cov.x, tmp_cov.y)] = tmp_cov
+}
+for (var i = 0; i < instance_number(oHighCover); ++i;)
+{
+	var tmp_cov = instance_find(oHighCover,i);
+	map_grid[# ScreenToTileX(tmp_cov.x, tmp_cov.y), ScreenToTileY(tmp_cov.x, tmp_cov.y)] = tmp_cov
+}
 for (var i = 0; i < instance_number(oCharacter); ++i;)
 {
     var tmp_char = instance_find(oCharacter,i);

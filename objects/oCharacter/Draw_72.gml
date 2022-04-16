@@ -31,7 +31,7 @@ for(var tX = 0; tX < MAP_W; tX++)
 			{
 				attack_grid[# tX, tY] = 1
 			}
-			else
+			else if(tmp_char.object_index != oLowCover and tmp_char.object_index != oHighCover)
 			{
 				attack_grid[# tX, tY] = 2
 			}

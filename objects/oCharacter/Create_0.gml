@@ -18,7 +18,8 @@ tmp_btn.action = move_to_attack
 array_push(menu.button_array, tmp_btn)
 c_color = c_blue
 weapon = instance_create_layer(x, y, layer, oWeapon)
-protection = 50
+cover = global.no_cover
+protection = 0
 
 _health = 3
 
@@ -29,3 +30,8 @@ enum CHARSTATES
 }
 
 state = CHARSTATES.IDLE
+
+function get_protection()
+{
+	return (protection + cover.cover_bonus)
+}

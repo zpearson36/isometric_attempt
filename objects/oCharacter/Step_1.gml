@@ -1,5 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
+
 if(selected and current_ap <= 0)
 {
 	oGame.selected = undefined
@@ -18,3 +19,4 @@ switch(state)
 		menu.is_active = false
 	}
 }
+
