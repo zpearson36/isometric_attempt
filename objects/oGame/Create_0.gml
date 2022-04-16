@@ -3,7 +3,7 @@
 map_grid = ds_grid_create(MAP_W, MAP_H)
 ds_grid_clear(map_grid, noone)
 
-randomize()
+//randomize()
 tmp_x = irandom(MAP_W - 1)
 tmp_y = irandom(MAP_H - 1)
 var tmp_char = instance_create_layer(
