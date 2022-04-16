@@ -23,6 +23,7 @@ switch oGame.state
 					{
 						var tmp_char = oGame.map_grid[# ScreenToTileX(mouse_x, mouse_y), ScreenToTileY(mouse_x, mouse_y)]
 						tmp_char._health -= weapon.damage
+						instance_create_depth(tmp_char.x, tmp_char.y, -50000, oMissIndicator)
 						current_ap = 0
 					}
 				}

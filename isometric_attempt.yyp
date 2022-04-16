@@ -2,7 +2,9 @@
   "resources": [
     {"id":{"name":"oActionMenu","path":"objects/oActionMenu/oActionMenu.yy",},"order":1,},
     {"id":{"name":"oGame","path":"objects/oGame/oGame.yy",},"order":3,},
+    {"id":{"name":"sMissIndicator","path":"sprites/sMissIndicator/sMissIndicator.yy",},"order":1,},
     {"id":{"name":"sTiles","path":"sprites/sTiles/sTiles.yy",},"order":1,},
+    {"id":{"name":"sHitIndicator","path":"sprites/sHitIndicator/sHitIndicator.yy",},"order":0,},
     {"id":{"name":"sIsoMovement","path":"sprites/sIsoMovement/sIsoMovement.yy",},"order":0,},
     {"id":{"name":"macros","path":"scripts/macros/macros.yy",},"order":0,},
     {"id":{"name":"sTmpBckGrnd","path":"sprites/sTmpBckGrnd/sTmpBckGrnd.yy",},"order":5,},
@@ -14,7 +16,9 @@
     {"id":{"name":"oCharacter","path":"objects/oCharacter/oCharacter.yy",},"order":2,},
     {"id":{"name":"oRender","path":"objects/oRender/oRender.yy",},"order":0,},
     {"id":{"name":"oActionMenuButton","path":"objects/oActionMenuButton/oActionMenuButton.yy",},"order":0,},
+    {"id":{"name":"oMissIndicator","path":"objects/oMissIndicator/oMissIndicator.yy",},"order":1,},
     {"id":{"name":"sChar","path":"sprites/sChar/sChar.yy",},"order":3,},
+    {"id":{"name":"oHitIndicator","path":"objects/oHitIndicator/oHitIndicator.yy",},"order":0,},
     {"id":{"name":"TileSet1","path":"tilesets/TileSet1/TileSet1.yy",},"order":0,},
     {"id":{"name":"oWeapon","path":"objects/oWeapon/oWeapon.yy",},"order":0,},
     {"id":{"name":"ScreenToTile","path":"scripts/ScreenToTile/ScreenToTile.yy",},"order":2,},
@@ -55,6 +59,8 @@
     {"folderPath":"folders/Objects/ActionGroup.yy","order":4,"resourceVersion":"1.0","name":"ActionGroup","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Objects/Items.yy","order":5,"resourceVersion":"1.0","name":"Items","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Objects/Items/Weapons.yy","order":1,"resourceVersion":"1.0","name":"Weapons","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Objects/utils.yy","order":6,"resourceVersion":"1.0","name":"utils","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Sprites/utils.yy","order":9,"resourceVersion":"1.0","name":"utils","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
