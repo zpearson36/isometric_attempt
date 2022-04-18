@@ -44,7 +44,7 @@ switch oGame.state
 					{
 						var tmp_char = oGame.map_grid[# ScreenToTileX(mouse_x, mouse_y), ScreenToTileY(mouse_x, mouse_y)]
 						var hit = irandom(99) + 1
-						if(weapon.accuracy * hit > tmp_char.get_protection())
+						if(weapon.accuracy * hit > tmp_char.get_protection(self))
 						{
 							tmp_char._health -= weapon.damage
 							instance_create_depth(tmp_char.x, tmp_char.y, -50000, oHitIndicator)

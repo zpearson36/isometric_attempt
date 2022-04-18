@@ -19,7 +19,8 @@ if(selected)
 				draw_rectangle_color(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0) - 100, device_mouse_x_to_gui(0) + 200, device_mouse_y_to_gui(0) - 50, c_black, c_black, c_black, c_black, false)
 				draw_set_alpha(1)
 				draw_rectangle_color(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0) - 100, device_mouse_x_to_gui(0) + 200, device_mouse_y_to_gui(0) - 50, c_black, c_black, c_black, c_black, true)
-				draw_text(device_mouse_x_to_gui(0) + 10, device_mouse_y_to_gui(0) - 90, "Chance to hit: " + string(100 - tmp_char.get_protection()) + "%")
+				draw_text(device_mouse_x_to_gui(0) + 10, device_mouse_y_to_gui(0) - 90, "Chance to hit: " + string(100 - tmp_char.get_protection(self)) + "%")
+				//draw_text(device_mouse_x_to_gui(0) + 10, device_mouse_y_to_gui(0) - 90, "Chance to hit: " + string(collision_line(x, y, tmp_char.x, tmp_char.y, tmp_char.cover, false, false)) + "%")
 			}
 			break;
 		}

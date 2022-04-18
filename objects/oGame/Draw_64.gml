@@ -5,5 +5,5 @@ draw_text(50, 75, string(ScreenToTileX(mouse_x, mouse_y)) + ", " + string(Screen
 
 for (var i = 0; i < instance_number(oCharacter); ++i;)
 {
-    draw_text(50,125 + i * 25, instance_find(oCharacter,i).get_protection())
+    draw_text(50,125 + i * 25, instance_find(oCharacter,i).get_protection(instance_find(oCharacter,i)))
 }
