@@ -1,5 +1,6 @@
-/// @description Insert description here
+/// @description Draw Begin event
 // You can write your code in this editor
+show_debug_message("SHIIIIIIIIIIIIIIIIT")
 ds_grid_clear(movement_grid, 0)
 ds_grid_clear(attack_grid, -1)
 if(current_ap > 0)

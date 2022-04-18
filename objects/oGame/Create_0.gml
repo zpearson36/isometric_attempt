@@ -1,6 +1,9 @@
 /// @description Insert description here
 // You can write your code in this editor
+
+
 _utils = instance_create_layer(x, y, layer, oUtils)
+
 map_grid = ds_grid_create(MAP_W, MAP_H)
 ds_grid_clear(map_grid, noone)
 
@@ -72,7 +75,7 @@ repeat(15)
 
 	array_push(cover_array, tmp_cover)
 }
-
+depth_sorter = instance_create_layer(x, y, layer, oDepthSorter)
 renderer = instance_create_layer(x, y, layer, oRender)			
 cam_con = instance_create_layer(x, y, layer, oCameraController)
 
