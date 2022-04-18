@@ -39,4 +39,4 @@ for(var tX = 0; tX < MAP_W; tX++)
 		}
 	}
 }
-if(highlight) y -= TILE_H / 2
+if(highlight) y_offset -= TILE_H / 2

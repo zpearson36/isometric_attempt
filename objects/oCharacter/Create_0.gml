@@ -20,7 +20,7 @@ c_color = c_blue
 weapon = instance_create_layer(x, y, layer, oWeapon)
 cover = global.no_cover
 protection = 0
-
+y_offset = 0
 _health = 3
 
 enum CHARSTATES
