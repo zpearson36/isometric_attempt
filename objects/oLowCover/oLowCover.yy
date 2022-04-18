@@ -8,8 +8,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "oDepthParent",
-    "path": "objects/oDepthParent/oDepthParent.yy",
+    "name": "oCoverParent",
+    "path": "objects/oCoverParent/oCoverParent.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,

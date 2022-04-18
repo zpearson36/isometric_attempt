@@ -34,25 +34,44 @@ switch oGame.state
 		{
 			case CHARSTATES.IDLE:
 			{
+				if(destination != undefined)
+				{
+					state = CHARSTATES.MOVING
+					break;
+				}
+				if(target != noone)
+				{
+					state = CHARSTATES.ATTACKING
+					break;
+				}
+				break;
+			}
+			case CHARSTATES.MOVING:
+			{
+				moved++
+				current_ap -= movement_grid[# ScreenToTileX(destination[0], destination[1]), ScreenToTileY(destination[0], destination[1])]
+				x = destination[0]
+				y = destination[1]
+				destination = undefined
+				state = CHARSTATES.IDLE
+				break;
+			}
+			case CHARSTATES.TARGETING:
+			{
+				if(target != noone) state = CHARSTATES.ATTACKING
 				break;
 			}
 			case CHARSTATES.ATTACKING:
 			{
-				if(mouse_check_button_pressed(mb_left))
+				var hit = irandom(99) + 1
+				if(weapon.accuracy * hit > target.get_protection(self))
 				{
-					if(attack_grid[# ScreenToTileX(mouse_x, mouse_y), ScreenToTileY(mouse_x, mouse_y)] == 2)
-					{
-						var tmp_char = oGame.map_grid[# ScreenToTileX(mouse_x, mouse_y), ScreenToTileY(mouse_x, mouse_y)]
-						var hit = irandom(99) + 1
-						if(weapon.accuracy * hit > tmp_char.get_protection(self))
-						{
-							tmp_char._health -= weapon.damage
-							instance_create_depth(tmp_char.x, tmp_char.y, -50000, oHitIndicator)
-						}
-						else instance_create_depth(tmp_char.x, tmp_char.y, -50000, oMissIndicator)
-						current_ap = 0
-					}
+					target._health -= weapon.damage
+					instance_create_depth(target.x, target.y, -50000, oHitIndicator)
 				}
+				else instance_create_depth(target.x, target.y, -50000, oMissIndicator)
+				current_ap = 0
+				target = noone
 				break;
 			}
 		}

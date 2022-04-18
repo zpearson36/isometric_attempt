@@ -29,3 +29,35 @@ for (var i = 0; i < instance_number(oCharacter); ++i;)
 	}
 	else map_grid[# ScreenToTileX(tmp_char.x, tmp_char.y), ScreenToTileY(tmp_char.x, tmp_char.y)] = tmp_char
 }
+
+switch state
+{
+	case GAMESTATES.BEGINTURN:
+	{
+		ai.next(noone)
+		if(not player_turn)
+		{
+			selected = 0
+		    ai.next(team_two[selected])
+		}
+		state = GAMESTATES.MAINTURN
+		break;
+	}
+	case GAMESTATES.MAINTURN:
+	{
+		if(not player_turn)
+		{
+			if(team_two[selected].current_ap <= 0)
+			{
+				selected += 1
+			    if(selected >= array_length(team_two)) break;
+			    ai.next(team_two[selected])
+			}
+			break;
+		}
+	}
+	case GAMESTATES.ENDTURN:
+	{
+		break;
+	}
+}

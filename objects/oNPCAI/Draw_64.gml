@@ -1,5 +1,3 @@
 /// @description Insert description here
 // You can write your code in this editor
-event_inherited()
-cover_bonus = 25
-alpha = 1
+if(npc != noone) draw_text(50, 50, npc.current_ap)
