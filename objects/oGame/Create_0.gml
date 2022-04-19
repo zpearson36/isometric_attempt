@@ -1,7 +1,3 @@
-/// @description Insert description here
-// You can write your code in this editor
-
-
 _utils = instance_create_layer(x, y, layer, oUtils)
 
 map_grid = ds_grid_create(MAP_W, MAP_H)
@@ -24,13 +20,14 @@ repeat(3)
 }
 
 team_two = []
+color_array = [c_red, c_aqua, c_fuchsia]
+ii = 0
 repeat(3)
 {
 	tmp_x = irandom(MAP_W - 1)
 	tmp_y = irandom_range(MAP_H - (MAP_H /5) ,MAP_H - 1)
 	while(map_grid[# tmp_x, tmp_y] != noone)
 	{
-		//show_debug_message("POOOOOOOOP")
 		tmp_x = irandom(MAP_W - 1)
 	    tmp_y = irandom(MAP_H - 1)
 	}
@@ -40,9 +37,10 @@ repeat(3)
 										layer,
 										oCharacter
 										)
-	tmp_char.c_color = c_red
+	tmp_char.c_color = color_array[ii]
 	array_push(team_two, tmp_char)
 	map_grid[# tmp_x, tmp_y] = tmp_char
+	ii++
 }
 
 team_array = []
@@ -90,4 +88,18 @@ enum GAMESTATES
 
 state = GAMESTATES.BEGINTURN
 in_action_menu = false
-show_debug_message("PEEEEEEEEEEEEEEEEEP")
+player_turn = true
+ai = instance_create_layer(x, y, layer, oNPCAI)
+
+function end_team_turn()
+{
+	for(var i = 0; i < array_length(oGame.team_array[oGame.current_team]); i++)
+	{
+		oGame.team_array[oGame.current_team][i].current_ap = 0
+	}
+}
+end_turn_button = instance_create_layer(x, y, layer, oActionMenu)
+end_turn_button.draw_x = display_get_gui_width() - 300
+end_turn_button.draw_y = 50
+end_turn_button.is_active = player_turn
+end_turn_button.button_array[0].action = end_team_turn

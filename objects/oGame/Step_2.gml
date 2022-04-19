@@ -23,3 +23,7 @@ switch state
 	}
 }
 in_action_menu = false
+for(var i = 0; i < array_length(team_array); i++)
+{
+	if(array_length(team_array[i]) == 0) game_end() 
+}

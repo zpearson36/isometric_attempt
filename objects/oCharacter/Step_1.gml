@@ -1,6 +1,5 @@
 /// @description Insert description here
 // You can write your code in this editor
-
 if(selected and current_ap <= 0)
 {
 	oGame.selected = undefined
@@ -13,6 +12,14 @@ switch(state)
 	{
 		menu.is_active = selected
 		break;
+	}
+	case CHARSTATES.MOVING:
+	{
+		menu.is_active = false
+	}
+	case CHARSTATES.TARGETING:
+	{
+		menu.is_active = false
 	}
 	case CHARSTATES.ATTACKING:
 	{

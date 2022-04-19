@@ -26,7 +26,7 @@ if(selected)
 			}
 			break;
 		}	
-		case CHARSTATES.ATTACKING:
+		case CHARSTATES.TARGETING:
 		{
 			for(var tX = 0; tX < MAP_W; tX++)
 			{

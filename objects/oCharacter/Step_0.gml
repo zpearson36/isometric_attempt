@@ -14,6 +14,8 @@ switch oGame.state
 		cover = global.no_cover
 		var tmp_x = ScreenToTileX(x, y)
 		var tmp_y = ScreenToTileY(x, y)
+		/*
+		// uncomment this block of code and comment block that uses cardinals to return to using all adjacent tiles
 		for(var i = -1; i <= 1; i++)
 		{
 			for(var j = -1; j <= 1; j++)
@@ -29,30 +31,65 @@ switch oGame.state
 					}
 				}
 			}
+		}*/
+		var cardinals = [[tmp_x, tmp_y-1], [tmp_x-1, tmp_y], [tmp_x+1, tmp_y], [tmp_x, tmp_y+1]]
+		for(var i = 0; i < array_length(cardinals); i++)
+		{
+			if(cardinals[i][0] < 0 or cardinals[i][1] < 0 or cardinals[i][0] >= MAP_W or cardinals[i][1] >= MAP_H) continue
+			if(oGame.map_grid[# cardinals[i][0], cardinals[i][1]] != noone)
+			{
+				var tmp_obj_index = oGame.map_grid[# cardinals[i][0], cardinals[i][1]].object_index
+				if(tmp_obj_index == oLowCover or tmp_obj_index == oHighCover)
+				{
+					cover = oGame.map_grid[# cardinals[i][0], cardinals[i][1]]
+				}
+			}
 		}
 		switch(state)
 		{
 			case CHARSTATES.IDLE:
 			{
+				if(destination != undefined)
+				{
+					state = CHARSTATES.MOVING
+					break;
+				}
+				if(target != noone)
+				{
+					show_debug_message(self)
+					state = CHARSTATES.ATTACKING
+					break;
+				}
+				break;
+			}
+			case CHARSTATES.MOVING:
+			{
+				moved++
+				current_ap -= movement_grid[# ScreenToTileX(destination[0], destination[1]), ScreenToTileY(destination[0], destination[1])]
+				x = destination[0]
+				y = destination[1]
+				destination = undefined
+				state = CHARSTATES.IDLE
+				break;
+			}
+			case CHARSTATES.TARGETING:
+			{
+				if(target != noone) state = CHARSTATES.ATTACKING
 				break;
 			}
 			case CHARSTATES.ATTACKING:
 			{
-				if(mouse_check_button_pressed(mb_left))
+				var hit = irandom(99) + 1
+				show_debug_message(target)
+				if(weapon.accuracy * hit > target.get_protection(self))
 				{
-					if(attack_grid[# ScreenToTileX(mouse_x, mouse_y), ScreenToTileY(mouse_x, mouse_y)] == 2)
-					{
-						var tmp_char = oGame.map_grid[# ScreenToTileX(mouse_x, mouse_y), ScreenToTileY(mouse_x, mouse_y)]
-						var hit = irandom(99) + 1
-						if(weapon.accuracy * hit > tmp_char.get_protection(self))
-						{
-							tmp_char._health -= weapon.damage
-							instance_create_depth(tmp_char.x, tmp_char.y, -50000, oHitIndicator)
-						}
-						else instance_create_depth(tmp_char.x, tmp_char.y, -50000, oMissIndicator)
-						current_ap = 0
-					}
+					target._health -= weapon.damage
+					instance_create_depth(target.x, target.y, -50000, oHitIndicator)
 				}
+				else instance_create_depth(target.x, target.y, -50000, oMissIndicator)
+				current_ap = 0
+				target = noone
+				state = CHARSTATES.IDLE
 				break;
 			}
 		}
