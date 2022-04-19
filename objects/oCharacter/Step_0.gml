@@ -80,6 +80,7 @@ switch oGame.state
 			case CHARSTATES.ATTACKING:
 			{
 				var hit = irandom(99) + 1
+				show_debug_message(target)
 				if(weapon.accuracy * hit > target.get_protection(self))
 				{
 					target._health -= weapon.damage

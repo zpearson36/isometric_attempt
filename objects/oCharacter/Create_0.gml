@@ -40,7 +40,7 @@ state = CHARSTATES.IDLE
 function get_protection(char_obj)
 {
 	var tmp_pro = protection
-	if(is_flanked(char_obj)) tmp_pro += cover.cover_bonus
+	if(not is_flanked(char_obj)) tmp_pro += cover.cover_bonus
 	return tmp_pro
 }
 
