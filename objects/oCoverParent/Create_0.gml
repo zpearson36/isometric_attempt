@@ -4,6 +4,7 @@ function get_adjacent_tiles()
 {
 	var tmp_x = ScreenToTileX(x, y)
 	var tmp_y = ScreenToTileY(x, y)
+	var cardinals = [[tmp_x, tmp_y-1], [tmp_x-1, tmp_y], [tmp_x+1, tmp_y], [tmp_x, tmp_y+1]]
 	var tile_list = []
 	for(var i = -1; i <= 1; i++)
 	{
@@ -14,5 +15,6 @@ function get_adjacent_tiles()
 		}
 	}
 	
-	return tile_list
+	// remove cardinals and return tile_list to use all adjacent tiles
+	return cardinals
 }

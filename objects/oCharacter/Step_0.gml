@@ -14,6 +14,8 @@ switch oGame.state
 		cover = global.no_cover
 		var tmp_x = ScreenToTileX(x, y)
 		var tmp_y = ScreenToTileY(x, y)
+		/*
+		// uncomment this block of code and comment block that uses cardinals to return to using all adjacent tiles
 		for(var i = -1; i <= 1; i++)
 		{
 			for(var j = -1; j <= 1; j++)
@@ -27,6 +29,19 @@ switch oGame.state
 					{
 						cover = oGame.map_grid[# tmp_x + i, tmp_y + j]
 					}
+				}
+			}
+		}*/
+		var cardinals = [[tmp_x, tmp_y-1], [tmp_x-1, tmp_y], [tmp_x+1, tmp_y], [tmp_x, tmp_y+1]]
+		for(var i = 0; i < array_length(cardinals); i++)
+		{
+			if(cardinals[i][0] < 0 or cardinals[i][1] < 0 or cardinals[i][0] >= MAP_W or cardinals[i][1] >= MAP_H) continue
+			if(oGame.map_grid[# cardinals[i][0], cardinals[i][1]] != noone)
+			{
+				var tmp_obj_index = oGame.map_grid[# cardinals[i][0], cardinals[i][1]].object_index
+				if(tmp_obj_index == oLowCover or tmp_obj_index == oHighCover)
+				{
+					cover = oGame.map_grid[# cardinals[i][0], cardinals[i][1]]
 				}
 			}
 		}
