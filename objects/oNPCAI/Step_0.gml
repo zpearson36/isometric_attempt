@@ -1,5 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
+if(npc != noone) show_debug_message(npc.flanked)
 switch(state)
 {
 	case NPCSTATES.IDLE:
@@ -7,6 +8,7 @@ switch(state)
 		if(npc == noone) break;
 		if(npc.current_ap <= 0)          {npc = noone; break;}
 		if(dest != undefined)            {state = NPCSTATES.MOVING; break;}
+		if(npc.flanked)                  {show_debug_message("YOOOOO");state = NPCSTATES.FINDINGCOVER; break;}
 		if(npc.cover == global.no_cover) {state = NPCSTATES.FINDINGCOVER; break;}
 		if(npc.target == noone)          {state = NPCSTATES.TARGETSELECTION; break;}
 		state = NPCSTATES.ACTION;
@@ -21,10 +23,11 @@ switch(state)
 			var tile_list = tmp_cov.get_adjacent_tiles()
 			for(var j = 0; j < array_length(tile_list); j++)
 			{
+				var new_dest = [TileToScreenX(tile_list[j][0], tile_list[j][1]), TileToScreenY(tile_list[j][0], tile_list[j][1])]
+				var is_flanked = false
 				if(oGame.map_grid[# tile_list[j][0], tile_list[j][1]] != noone) continue
 				for(var k = 0; k < array_length(oGame.team_one); k++)
 				{
-					var new_dest = undefined
 					var char_obj = oGame.team_one[k]
 					var tmp_x2 = ScreenToTileX(char_obj.x, char_obj.y)
 					var tmp_y2 = ScreenToTileY(char_obj.x, char_obj.y)
@@ -32,23 +35,37 @@ switch(state)
 					var tmp_y3 = ScreenToTileY(tmp_cov.x, tmp_cov.y)
 					var tmp_dist1 = point_distance(tile_list[j][0], tile_list[j][1], tmp_x2, tmp_y2)
 					var tmp_dist2 = point_distance(tmp_x3, tmp_y3, tmp_x2, tmp_y2)
-					if(tmp_dist1 > tmp_dist2) new_dest = [TileToScreenX(tile_list[j][0], tile_list[j][1]), TileToScreenY(tile_list[j][0], tile_list[j][1])]
-					if(tmp_dest == undefined) tmp_dest = new_dest
-					else if(new_dest != undefined and point_distance(npc.x, npc.y, new_dest[0], new_dest[1]) < point_distance(npc.x, npc.y, tmp_dest[0], tmp_dest[1])) tmp_dest = new_dest
+					if(tmp_dist1 < tmp_dist2) is_flanked = true
+					/*
+					// checks to see if it will be flanked on this tile
+					if(tmp_dist1 > tmp_dist2) new_dest2 = [TileToScreenX(tile_list[j][0], tile_list[j][1]), TileToScreenY(tile_list[j][0], tile_list[j][1])]
+					if(new_dest2 != undefined)
+					{
+						if(new_dest == undefined) new_dest = new_dest
+						else if(point_distance(npc.x, npc.y, new_dest2[0], new_dest2[1])
+								< point_distance(npc.x, npc.y, new_dest[0], new_dest[1])) new_dest = new_dest2
+					}
+					*/
 					//Back up incase no suitable destination can be found, finds the closest
 					//if(tmp_dest == undefined) tmp_dest = [TileToScreenX(tile_list[j][0], tile_list[j][1]), TileToScreenY(tile_list[j][0], tile_list[j][1])]
 					//else if(point_distance(npc.x, npc.y, TileToScreenX(tile_list[j][0], tile_list[j][1]), TileToScreenY(tile_list[j][0], tile_list[j][1])) < point_direction(npc.x, npc.y, tmp_dest[0], tmp_dest[1])) tmp_dest = [tmp_cov.x, tmp_cov.y]
 				}
+				if(not is_flanked)
+				{
+					if(tmp_dest == undefined) tmp_dest = new_dest
+					else if(point_distance(npc.x, npc.y, new_dest[0], new_dest[1])
+							< point_distance(npc.x, npc.y, tmp_dest[0], tmp_dest[1])) tmp_dest = new_dest
+				}
 			}
 		}
-		if(dest == undefined) dest = tmp_dest
+		dest = tmp_dest
 		state = NPCSTATES.IDLE
 		break;
 	}
 	case NPCSTATES.MOVING:
 	{
-		show_debug_message(npc)
-		show_debug_message([ScreenToTileX(dest[0], dest[1]), ScreenToTileY(dest[0], dest[1])])
+		//show_debug_message(npc)
+		//show_debug_message([ScreenToTileX(dest[0], dest[1]), ScreenToTileY(dest[0], dest[1])])
 		if(npc.movement_grid[# ScreenToTileX(dest[0], dest[1]), ScreenToTileY(dest[0], dest[1])] == 0)
 		{
 			var tmp_x = ScreenToTileX(dest[0], dest[1])
@@ -71,7 +88,7 @@ switch(state)
 			}
 			dest = [TileToScreenX(tmp_dest[0], tmp_dest[1]), TileToScreenY(tmp_dest[0], tmp_dest[1])]
 		}
-		show_debug_message([ScreenToTileX(dest[0], dest[1]), ScreenToTileY(dest[0], dest[1])])
+		//show_debug_message([ScreenToTileX(dest[0], dest[1]), ScreenToTileY(dest[0], dest[1])])
 		npc.destination = dest
 		dest = undefined
 		state = NPCSTATES.IDLE

@@ -25,6 +25,8 @@ _health = 3
 destination = undefined
 target = noone
 moved = 0
+flanked = false
+flanked_by = []
 enum CHARSTATES
 {
 	IDLE,
@@ -38,6 +40,13 @@ state = CHARSTATES.IDLE
 function get_protection(char_obj)
 {
 	var tmp_pro = protection
+	if(is_flanked(char_obj)) tmp_pro += cover.cover_bonus
+	return tmp_pro
+}
+
+function is_flanked(char_obj)
+{
+	var flanking = false
 	var tmp_x1 = ScreenToTileX(x, y)
 	var tmp_y1 = ScreenToTileY(x, y)
 	var tmp_x2 = ScreenToTileX(char_obj.x, char_obj.y)
@@ -46,6 +55,7 @@ function get_protection(char_obj)
 	var tmp_y3 = ScreenToTileY(cover.x, cover.y)
 	var tmp_dst1 = point_distance(tmp_x1, tmp_y1, tmp_x2, tmp_y2)
 	var tmp_dst2 = point_distance(tmp_x3, tmp_y3, tmp_x2, tmp_y2)
-	if(tmp_dst1 > tmp_dst2) tmp_pro += cover.cover_bonus
-	return tmp_pro
+	if(tmp_dst1 < tmp_dst2) flanking = true
+	
+	return flanking
 }

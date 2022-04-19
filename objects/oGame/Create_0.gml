@@ -90,3 +90,16 @@ state = GAMESTATES.BEGINTURN
 in_action_menu = false
 player_turn = true
 ai = instance_create_layer(x, y, layer, oNPCAI)
+
+function end_team_turn()
+{
+	for(var i = 0; i < array_length(oGame.team_array[oGame.current_team]); i++)
+	{
+		oGame.team_array[oGame.current_team][i].current_ap = 0
+	}
+}
+end_turn_button = instance_create_layer(x, y, layer, oActionMenu)
+end_turn_button.draw_x = display_get_gui_width() - 300
+end_turn_button.draw_y = 50
+end_turn_button.is_active = player_turn
+end_turn_button.button_array[0].action = end_team_turn
