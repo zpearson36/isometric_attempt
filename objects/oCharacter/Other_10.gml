@@ -1,6 +1,26 @@
 /// @description Draw Begin event
 // You can write your code in this editor
 
+ds_grid_clear(movement_grid, 0)
+ds_grid_clear(attack_grid, -1)
+if(current_ap > 0)
+{
+	ds_grid_set_disk(movement_grid,
+		                ScreenToTileX(x, y),
+						ScreenToTileY(x, y),
+						spd * current_ap,
+						2)
+	ds_grid_set_disk(movement_grid,
+		                ScreenToTileX(x, y),
+						ScreenToTileY(x, y),
+						spd,
+						1)
+}
+ds_grid_set_disk(attack_grid,
+		         ScreenToTileX(x, y),
+				 ScreenToTileY(x, y),
+				 weapon.range,
+				 0)
 for(var tX = 0; tX < MAP_W; tX++)
 {
 	for(var tY = 0; tY < MAP_H; tY++)

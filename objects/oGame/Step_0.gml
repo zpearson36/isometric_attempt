@@ -45,6 +45,7 @@ switch state
 						{
 							if(mouse_check_button_pressed(mb_left))
 							{
+								show_debug_message(selected.attack_grid[# ScreenToTileX(mouse_x, mouse_y), ScreenToTileY(mouse_x, mouse_y)])
 								if(selected.attack_grid[# ScreenToTileX(mouse_x, mouse_y), ScreenToTileY(mouse_x, mouse_y)] == 2)
 								{
 									selected.target = map_grid[# ScreenToTileX(mouse_x, mouse_y), ScreenToTileY(mouse_x, mouse_y)]
