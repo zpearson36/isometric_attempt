@@ -1,6 +1,5 @@
 /// @description Insert description here
 // You can write your code in this editor
-if(npc != noone) show_debug_message(npc.flanked)
 switch(state)
 {
 	case NPCSTATES.IDLE:
@@ -8,7 +7,7 @@ switch(state)
 		if(npc == noone) break;
 		if(npc.current_ap <= 0)          {npc = noone; break;}
 		if(dest != undefined)            {state = NPCSTATES.MOVING; break;}
-		if(npc.flanked)                  {show_debug_message("YOOOOO");state = NPCSTATES.FINDINGCOVER; break;}
+		if(npc.flanked)                  {state = NPCSTATES.FINDINGCOVER; break;}
 		if(npc.cover == global.no_cover) {state = NPCSTATES.FINDINGCOVER; break;}
 		if(npc.target == noone)          {state = NPCSTATES.TARGETSELECTION; break;}
 		state = NPCSTATES.ACTION;
@@ -36,19 +35,6 @@ switch(state)
 					var tmp_dist1 = point_distance(tile_list[j][0], tile_list[j][1], tmp_x2, tmp_y2)
 					var tmp_dist2 = point_distance(tmp_x3, tmp_y3, tmp_x2, tmp_y2)
 					if(tmp_dist1 < tmp_dist2) is_flanked = true
-					/*
-					// checks to see if it will be flanked on this tile
-					if(tmp_dist1 > tmp_dist2) new_dest2 = [TileToScreenX(tile_list[j][0], tile_list[j][1]), TileToScreenY(tile_list[j][0], tile_list[j][1])]
-					if(new_dest2 != undefined)
-					{
-						if(new_dest == undefined) new_dest = new_dest
-						else if(point_distance(npc.x, npc.y, new_dest2[0], new_dest2[1])
-								< point_distance(npc.x, npc.y, new_dest[0], new_dest[1])) new_dest = new_dest2
-					}
-					*/
-					//Back up incase no suitable destination can be found, finds the closest
-					//if(tmp_dest == undefined) tmp_dest = [TileToScreenX(tile_list[j][0], tile_list[j][1]), TileToScreenY(tile_list[j][0], tile_list[j][1])]
-					//else if(point_distance(npc.x, npc.y, TileToScreenX(tile_list[j][0], tile_list[j][1]), TileToScreenY(tile_list[j][0], tile_list[j][1])) < point_direction(npc.x, npc.y, tmp_dest[0], tmp_dest[1])) tmp_dest = [tmp_cov.x, tmp_cov.y]
 				}
 				if(not is_flanked)
 				{
@@ -96,7 +82,45 @@ switch(state)
 	}
 	case NPCSTATES.TARGETSELECTION:
 	{
-		npc.current_ap = 0
+		//Are there any targets within range?
+		//targets in range, find target with highest hit chance
+		//set target
+		var target_list = []
+		for(var tX = 0; tX < MAP_W; tX++)
+		{
+			for(var tY = 0; tY < MAP_H; tY++)
+			{
+				var tmp_char = oGame.map_grid[# tX, tY]
+				
+				
+				if(in_array(oGame.team_one, tmp_char) and npc.attack_grid[# tX, tY] == 2)
+				{
+					array_push(target_list, tmp_char)
+				}
+			}
+		}
+		show_debug_message(target_list)
+		if(array_length(target_list) > 0)
+		{
+			var tmp_targ = noone
+			for(var i = 0; i < array_length(target_list); i++)
+			{
+				show_debug_message(target_list[i])
+				if(tmp_targ == noone) tmp_targ = target_list[i]
+				else if(tmp_targ.get_protection(npc) < target_list[i].get_protection(npc)) tmp_targ = target_list[i]
+			}
+			npc.target = tmp_targ
+			target = tmp_targ
+			state = NPCSTATES.IDLE
+		}
+		else
+		{
+			//No Targets in range, find the closest potential target
+			//find safest cover closer to potential target
+			//set destination
+			npc.current_ap = 0
+		}
+		
 		break;
 	}
 	case NPCSTATES.ACTION:

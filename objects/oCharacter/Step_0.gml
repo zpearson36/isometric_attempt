@@ -56,6 +56,7 @@ switch oGame.state
 				}
 				if(target != noone)
 				{
+					show_debug_message(self)
 					state = CHARSTATES.ATTACKING
 					break;
 				}
@@ -87,6 +88,7 @@ switch oGame.state
 				else instance_create_depth(target.x, target.y, -50000, oMissIndicator)
 				current_ap = 0
 				target = noone
+				state = CHARSTATES.IDLE
 				break;
 			}
 		}
