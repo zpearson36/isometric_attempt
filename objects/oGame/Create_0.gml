@@ -3,9 +3,9 @@ _utils = instance_create_layer(x, y, layer, oUtils)
 map_grid = ds_grid_create(MAP_W, MAP_H)
 ds_grid_clear(map_grid, noone)
 
-//randomize()
+randomize()
 team_one = []
-repeat(3)
+repeat(5)
 {
 	tmp_x = irandom(MAP_W - 1)
 	tmp_y = irandom(MAP_H / 5)
@@ -22,7 +22,7 @@ repeat(3)
 team_two = []
 color_array = [c_red, c_aqua, c_fuchsia]
 ii = 0
-repeat(3)
+repeat(5)
 {
 	tmp_x = irandom(MAP_W - 1)
 	tmp_y = irandom_range(MAP_H - (MAP_H /5) ,MAP_H - 1)
@@ -37,7 +37,7 @@ repeat(3)
 										layer,
 										oCharacter
 										)
-	tmp_char.c_color = color_array[ii]
+	tmp_char.c_color = color_array[ii % 3]
 	array_push(team_two, tmp_char)
 	map_grid[# tmp_x, tmp_y] = tmp_char
 	ii++
@@ -53,7 +53,8 @@ cover_array = []
 repeat(15)
 {
 	tmp_x = irandom(MAP_W - 1)
-	tmp_y = irandom_range((MAP_H / 4) + 1, MAP_H - (MAP_H / 4))
+	tmp_y = irandom(MAP_H - 1)
+	//tmp_y = irandom_range((MAP_H / 4) + 1, MAP_H - (MAP_H / 4))
 	while(map_grid[# tmp_x, tmp_y] != noone)
 	{
 		tmp_x = irandom(MAP_W - 1)

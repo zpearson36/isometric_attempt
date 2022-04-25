@@ -1,16 +1,22 @@
 /// @description Insert description here
 // You can write your code in this editor
+var opposite_team = oGame.current_team + 1
+if (opposite_team >= array_length(oGame.team_array)) opposite_team = 0
 switch(state)
 {
 	case NPCSTATES.IDLE:
 	{
+		
 		if(npc == noone) break;
-		if(npc.current_ap <= 0)          {npc = noone; break;}
-		if(dest != undefined)            {state = NPCSTATES.MOVING; break;}
-		if(npc.flanked)                  {state = NPCSTATES.FINDINGCOVER; break;}
-		if(npc.cover == global.no_cover) {state = NPCSTATES.FINDINGCOVER; break;}
-		if(npc.target == noone)          {state = NPCSTATES.TARGETSELECTION; break;}
-		state = NPCSTATES.ACTION;
+		if(npc.state == CHARSTATES.IDLE)
+		{
+			if(npc.current_ap <= 0)          {npc = noone; break;}
+			if(dest != undefined)            {state = NPCSTATES.MOVING; break;}
+			if(npc.flanked)                  {state = NPCSTATES.FINDINGCOVER; break;}
+			if(npc.cover == global.no_cover) {state = NPCSTATES.FINDINGCOVER; break;}
+			if(npc.target == noone)          {state = NPCSTATES.TARGETSELECTION; break;}
+			state = NPCSTATES.ACTION;
+		}
 		break;
 	}
 	case NPCSTATES.FINDINGCOVER:
@@ -25,9 +31,9 @@ switch(state)
 				var new_dest = [TileToScreenX(tile_list[j][0], tile_list[j][1]), TileToScreenY(tile_list[j][0], tile_list[j][1])]
 				var is_flanked = false
 				if(oGame.map_grid[# tile_list[j][0], tile_list[j][1]] != noone) continue
-				for(var k = 0; k < array_length(oGame.team_one); k++)
+				for(var k = 0; k < array_length(oGame.team_array[opposite_team]); k++)
 				{
-					var char_obj = oGame.team_one[k]
+					var char_obj = oGame.team_array[opposite_team][k]
 					var tmp_x2 = ScreenToTileX(char_obj.x, char_obj.y)
 					var tmp_y2 = ScreenToTileY(char_obj.x, char_obj.y)
 					var tmp_x3 = ScreenToTileX(tmp_cov.x, tmp_cov.y)
@@ -86,9 +92,9 @@ switch(state)
 		//targets in range, find target with highest hit chance
 		//set target
 		var target_list = []
-		for(var i = 0; i < array_length(oGame.team_one); i++)
+		for(var i = 0; i < array_length(oGame.team_array[opposite_team]); i++)
 		{
-			var tmp_char = oGame.team_one[i]
+			var tmp_char = oGame.team_array[opposite_team][i]
 			var tX = ScreenToTileX(tmp_char.x, tmp_char.y)
 			var tY = ScreenToTileY(tmp_char.x, tmp_char.y)
 			if(npc.attack_grid[# tX, tY] != -1)
@@ -116,9 +122,9 @@ switch(state)
 			//find safest cover closer to potential target
 			//set destination
 			var tmp_targ = noone
-			for(var i = 0; i < array_length(oGame.team_one); i++)
+			for(var i = 0; i < array_length(oGame.team_array[opposite_team]); i++)
 			{
-				var tmp_char = oGame.team_one[i]
+				var tmp_char = oGame.team_array[opposite_team][i]
 				if(tmp_targ == noone) tmp_targ = tmp_char
 				else if(point_distance(npc.x, npc.y, tmp_char.x, tmp_char.y) < point_distance(npc.x, npc.y, tmp_targ.x, tmp_targ.y)) tmp_targ = tmp_char
 			}
@@ -140,9 +146,9 @@ switch(state)
 					var new_dest = [TileToScreenX(tile_list[j][0], tile_list[j][1]), TileToScreenY(tile_list[j][0], tile_list[j][1])]
 					var is_flanked = false
 					if(oGame.map_grid[# tile_list[j][0], tile_list[j][1]] != noone) continue
-					for(var k = 0; k < array_length(oGame.team_one); k++)
+					for(var k = 0; k < array_length(oGame.team_array[opposite_team]); k++)
 					{
-						var char_obj = oGame.team_one[k]
+						var char_obj = oGame.team_array[opposite_team][k]
 						var tmp_x2 = ScreenToTileX(char_obj.x, char_obj.y)
 						var tmp_y2 = ScreenToTileY(char_obj.x, char_obj.y)
 						var tmp_x3 = ScreenToTileX(tmp_cov.x, tmp_cov.y)
@@ -162,6 +168,8 @@ switch(state)
 			}
 			npc.destination = tmp_dest
 			state = NPCSTATES.IDLE
+			if(tmp_dest == undefined) npc.current_ap = 0
+			show_debug_message(2)
 			break;
 		}
 		break;

@@ -59,3 +59,13 @@ function is_flanked(char_obj)
 	
 	return flanking
 }
+
+function end_turn()
+{
+	current_ap = 0
+	if(selected) oGame.selected = undefined
+	target = noone
+	selected = false
+	state = NPCSTATES.IDLE
+	destination = undefined
+}

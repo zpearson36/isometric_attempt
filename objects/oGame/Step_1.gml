@@ -1,5 +1,5 @@
-/// @description Insert description here
-// You can write your code in this editor
+// uncomment to make player_turn false, have AI run all teams
+//player_turn = false
 end_turn_button.is_active = player_turn
 ds_grid_clear(map_grid, noone)
 for (var i = 0; i < instance_number(oLowCover); ++i;)
@@ -56,7 +56,7 @@ switch state
 		if(not player_turn)
 		{
 			selected = 0
-		    ai.next(team_two[selected])
+		    ai.next(team_array[current_team][selected])
 		}
 		state = GAMESTATES.MAINTURN
 		break;
@@ -66,11 +66,11 @@ switch state
 		
 		if(not player_turn)
 		{
-			if(team_two[selected].current_ap <= 0)
+			if(team_array[current_team][selected].current_ap <= 0)
 			{
 				selected += 1
-			    if(selected >= array_length(team_two)) break;
-			    ai.next(team_two[selected])
+			    if(selected >= array_length(team_array[current_team])) break;
+			    ai.next(team_array[current_team][selected])
 			}
 			break;
 		}

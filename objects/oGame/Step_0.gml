@@ -96,8 +96,10 @@ switch state
 	}
 	case GAMESTATES.ENDTURN:
 	{
-		
-		if(selected != undefined) selected.selected = false
+		if(player_turn)
+		{
+			if(selected != undefined) selected.selected = false
+		}
 		selected = undefined
 		current_team++
 		if(current_team >= num_teams) current_team = 0
